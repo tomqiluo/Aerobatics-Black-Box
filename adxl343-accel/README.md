@@ -9,3 +9,5 @@ Then, run
 `idf.py -p COM4 build flahs monitor`
 
 And you will be able to see the result in console.
+
+![accel](images/accel.jpg)
