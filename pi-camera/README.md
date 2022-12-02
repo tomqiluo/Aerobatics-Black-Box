@@ -1,4 +1,4 @@
-# Aerobatics-Black-Box
+# Pi Camera Instructions
 Everything is done on Raspberry Pi Zero.
 
 ## Installation
