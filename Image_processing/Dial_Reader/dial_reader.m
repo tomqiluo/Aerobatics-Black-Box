@@ -1,7 +1,7 @@
 % Dial Reader
 % EC463
 % Max Bakalos
-% 11/15/2022
+% 11/15/2022 (start date)
 
 %{
 DIAL READER: CIRCLE DETECTION
@@ -23,15 +23,24 @@ Edge Detection
 
 Find Circles
 *   Use circular Hough transform to detect circles within a given radius range
+
+Cut Out Dials
+*   Use circle radius to cut out each dial as its own image
+*   Mask out pixels outside circle radius
+
+Pointer Detection
+*   Use Hough line transform to detect lines within a given length range
+*   Choose the longest line as the dial pointer
+
 %}
 
 clear; close all;
 
-tic % timer start
+tic % timer start   ~*~*~*~
 
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% Input Parameters
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% Input Parameters   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
 
 % Downsampling Toggle (1 -> On, 0 -> Off)
 downsamp = 1;
@@ -60,8 +69,9 @@ neighborhood = 2;
 % Erode BW Cutout Dial Image (1-> On, else -> Off)
 erode = 1;
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% Load Image
+
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% Load Image   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
 
 % Select Image
 [im_name,path] = uigetfile('*.*');
@@ -78,8 +88,8 @@ fprintf(print_text)
 dim_OG = size(im_original);
 
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% Downsample
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% Downsample   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
 
 % If downsampling is on % the image is divisible by the downsample factor
 if ( (downsamp == 1) )%&& (sum(mod(dim(1:2),downsamp_fact)) == 0) )
@@ -137,12 +147,14 @@ im = uint8(im);
 % Downsampled Image Dimensions
 dim = size(im);
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% BILATERAL FILTERING
+
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% BILATERAL FILTERING   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
 
 if (bilat_filt == 1)
     im_bilat = imbilatfilt(im);
-
+    
+    % Display
     figure('Name',"Bilateral Filtering Process")
     subplot(1,2,1)
     imshow(im); title("Before")
@@ -153,25 +165,25 @@ if (bilat_filt == 1)
 end
 
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% EDGE DETECTION /[OR]/ ADAPTIVE THRESHOLDING
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% EDGE DETECTION /[OR]/ ADAPTIVE THRESHOLDING   ~%%%%%%%%%%%%%%%%%%%%%%%~
 
-% CONVERT TO GRAYSCALE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONVERT TO GRAYSCALE   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if (length(dim_OG) == 3)
     im_bw = rgb2gray(im);
 else
     im_bw = im;
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
 % EDGE DETECTION ~ ~ ~ ~ ~ ~ ~ ~ ~
 if (edge_adapt == 1) || (edge_adapt == 3)
     
-    % DETECT IMAGE EDGES   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % DETECT IMAGE EDGES   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     im_edge = double(edge(im_bw));
     
 
-    % WIDEN EDGE-DETECTED IMAGE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % WIDEN EDGE-DETECTED IMAGE   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % Preallocate
     im_preCirc = im_edge; % Widened Edge-Detected Image
@@ -204,15 +216,14 @@ if (edge_adapt == 1) || (edge_adapt == 3)
         end
     end
 
-    % Invert Widened Edge-Detected Image   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Invert Widened Edge-Detected Image   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     im_preCirc_A = not(im_preCirc);
 end
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
 % ADAPTIVE THRESHOLDING ~ ~ ~ ~ ~ ~ ~ ~ ~
 if (edge_adapt == 2) || (edge_adapt == 3)
-    % ADAPTIVE THRESHOLD   %%%%%%%
+    % ADAPTIVE THRESHOLD   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     % Find the adaptive threshold at each pixel based on neighborhood mean
     thresh = adaptthresh(im_bw, 0.35, 'Statistic','gaussian', 'ForegroundPolarity','bright');
@@ -220,10 +231,11 @@ if (edge_adapt == 2) || (edge_adapt == 3)
     % Convert into a binary image based on the threshold
     im_preCirc = imbinarize(im_bw, thresh); % Adaptive-Thresholded Image
 
-    % Invert
+    % Invert   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     im_preCirc_B = not(im_preCirc);
 end
 
+% ~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
 % Determine Final Binary Image
 if (edge_adapt == 1)
     im_preCirc_inv = im_preCirc_A;  % Widened Edge-Detected
@@ -232,7 +244,8 @@ elseif (edge_adapt == 2)
 elseif (edge_adapt == 3)
     im_preCirc_inv = (im_preCirc_A & im_preCirc_B); % Both
 
-    figure()
+    % Display
+    figure('Name','Combining Edge-Detection & Adaptive-Thresholding')
     subplot(2,2,1)
     imshow(im_preCirc_A)
     subplot(2,2,2)
@@ -242,30 +255,30 @@ elseif (edge_adapt == 3)
 end
 
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% FIND CIRCLES
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% FIND CIRCLES   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
 
-
+% Find Radius Circle Range   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 short_dim = min(size(im,[1,2]));   % Shortest dimension of image
 min_radius_perc = 0.05; % minimum radius (as a percent of short_dim)
 radius_range = [round(min_radius_perc*short_dim), short_dim]; % Circle Radius Range
 
-% Find Circles
+% Find Circles   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [centers, radii, metric] = imfindcircles(im_preCirc_inv, radius_range);
 
-% Create Rectangle Bounding Box Parameters
+% Create Rectangle Bounding Box Parameters   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 x_rec = round( centers(:,1) - radii ); % lower left corner x-value
 y_rec = round( centers(:,2) - radii ); % lower left corner y-value
-w_rec = round(2*radii);    % horizontal width
-h_rec = w_rec;                  % vertical height
+w_rec = round(2*radii);     % horizontal width
+h_rec = w_rec;              % vertical height
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DISPLAY THE DETECTED CIRCLES   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
+% DISPLAY THE DETECTED CIRCLES ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 % Display
 figure('Name', 'Circle Detection Process')
 
-% Edge Detection
+% Edge Detection   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if (edge_adapt == 1)
     subplot(2,2,1)
     imshow(im_edge)
@@ -277,7 +290,7 @@ if (edge_adapt == 1)
     imshow(im_preCirc_inv)
     title("Inverted Widened Edge-Detected Image")
 
-% Adaptive Thresholding
+% Adaptive Thresholding   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 elseif (edge_adapt == 2)
     subplot(2,2,[1,2])
     imshow(im_preCirc)
@@ -287,82 +300,102 @@ elseif (edge_adapt == 2)
     title("Inverted Adaptive-Thresholded Image")
 end
 
-% Circles (& Bounding Boxes) Overlayed on OG Image
+% Circles (& Bounding Boxes) Overlayed on OG Image   ~~~~~~~~~~~~~~~~~~~~
 subplot(2,2,4)
 imshow(im)
-% Rectangles
+% Rectangles ~ ~ ~ ~ ~ ~ ~
+% For each detected circle . . .
 for i = 1:size(x_rec, 1)
     rectangle('Position',[x_rec(i), y_rec(i), w_rec(i), h_rec(i)], 'EdgeColor','r', 'LineWidth',2)
 end
-% Circles
+% Circles ~ ~ ~ ~ ~ ~ ~
 viscircles(centers, radii,'EdgeColor','b'); % circle circumferences
 viscircles(centers, ones(size(centers,1),1),'EdgeColor','b'); % circle centers
 title("Detected Circles")
 
-%% Cut Each Circle Out
-circles_list = cell(1, size(x_rec, 1));     % Modified Circle Cutout
-circles_list_im = cell(1, size(x_rec, 1));  % Circle Cutout of Image
 
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% CUT EACH CIRCLE OUT   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+
+% Preallocate
+circles_cutout = cell(1, size(x_rec, 1));     % Modified Circle Cutout list
+circles_cutout_OG = cell(1, size(x_rec, 1));  % Unmodified Circle Cutout list
+
+% For each detected circle . . .
 for i = 1:size(x_rec, 1)
+
+    % Get x & y ranges for square dial cutouts
     x_range = round( centers(i,1) - radii(i) ) : round( centers(i,1) + radii(i) );
     y_range = round( centers(i,2) - radii(i) ) : round( centers(i,2) + radii(i) );
 
-    % Too low fix
+    % Range too low fix
     x_range(x_range <= 0) = 1;  % width
     y_range(y_range <= 0) = 1;  % height
-    % Too high fix
+    % Range too high fix
     x_range(x_range > dim(2)) = dim(2);  % height
     y_range(y_range > dim(1)) = dim(1);  % width
 
-    %// Generate grid with binary mask representing the circle. Credit to Jonas for original code.
-    %x_range_grid = round(-length(x_range)/2) : round(length(x_range)/2);
-    %y_range_grid = round(-length(y_range)/2) : round(length(y_range)/2);
-
+    % Create grid around dial for mask
     [y_grid, x_grid] = ndgrid(y_range - round(centers(i,2)), x_range - round(centers(i,1)));
-    mask = (x_grid.^2 + y_grid.^2) > (0.7*radii(i)^2);
+    % Create mask (pixels outside circle radius)
+    rad_frac = 0.7; % fraction of radius to stop at
+    mask = (x_grid.^2 + y_grid.^2) > (rad_frac*radii(i)^2);
 
+    % Cut out dial
     im_cutout = im_preCirc(y_range, x_range);
+    % Apply mask
     im_cutout(mask) = 0;
     
     if (erode == 1)
+        % Create structuring element
         se = strel('square', 2);
         % Erode the image with the structuring element.
         im_cutout = imerode(im_cutout, se);
     end
 
-    circles_list{1, i} = im_cutout;
+    % Put modified cutout into list of images
+    circles_cutout{1, i} = im_cutout;
 
-    circles_list_im{1, i} = im(y_range, x_range,:);
+    % Cutout corresponding spot in original image
+    circles_cutout_OG{1, i} = im(y_range, x_range,:);
 end
 
+% Display
 figure('Name','Cut-Out Circles (Dials)')
-montage(circles_list)
+montage(circles_cutout)
 
-%% FIND LINES
 
-numLines = 10;                  % # of lines to find
-c_num = size(circles_list, 2);  % # of circles
+% ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
+%% FIND LINES   ~%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%~
 
+numLines = 10;                      % # of lines to find
+c_num = size(circles_cutout, 2);    % # of circles
+
+% Display
 figure('Name', 'Detected Lines in Cut-Out Circles')
+
+% For each circle . . .
 for i = 1:c_num
 
-    % Compute the Hough transform of the binary image returned by edge.
-    [H,theta,rho] = hough(circles_list{i});
+    % Compute Hough line transform
+    [H,theta,rho] = hough(circles_cutout{i});
     
-    % Find the peaks in the Hough transform matrix, H, using the houghpeaks function.
+    % Find peaks in the Hough line transform matrix
     P = houghpeaks(H,numLines);%,'threshold',ceil(0.3*max(H(:))));
     
-    % Find lines in the image using the houghlines function. 
-    lines = houghlines(circles_list{i},theta,rho,P, 'FillGap', 30, 'MinLength',radii(i)/3.5);
+    % Find lines
+    lines = houghlines(circles_cutout{i},theta,rho,P, 'FillGap', 30, 'MinLength',radii(i)/3.5);
 
     % Only keep the lines that have a length of less than the circle radius
     keep = vecnorm(vertcat(lines.point1)-vertcat(lines.point2),2,2) < radii(i);
     lines = lines(keep);
     
-    % Create a plot that displays the original image with the lines superimposed on it.
+    % Display lines over dial cutout image
     subplot(2, c_num, i)
-    imshow(circles_list{i}), hold on
+    imshow(circles_cutout{i}), hold on
     max_len = 0;
+
+    % For each line . . .
     for k = 1:length(lines)
        xy = [lines(k).point1; lines(k).point2];
        plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
@@ -371,29 +404,35 @@ for i = 1:c_num
        plot(xy(1,1),xy(1,2),'x','LineWidth',2,'Color','yellow');
        plot(xy(2,1),xy(2,2),'x','LineWidth',2,'Color','red');
     
-       % Determine the endpoints of the longest line segment
+       % Determine the endpoints of the longest line
        len = norm(lines(k).point1 - lines(k).point2);
        if ( len > max_len)
           max_len = len;
           xy_long = xy;
        end
     end
+
     if not(isempty(lines))
-        % highlight the longest line segment
+        % Highlight the longest line segment
         plot(xy_long(:,1),xy_long(:,2),'LineWidth',2,'Color','red');
     end
+
+    % Title of 1st image plot
     title(strcat("Top Lines: Dial #", num2str(i)))
     hold off;
 
+    % Display Pointer line on original dial image cutouts
     subplot(2, c_num, c_num + i)
-    imshow(circles_list_im{i}), hold on
+    imshow(circles_cutout_OG{i}), hold on
     if not(isempty(lines))
         % Overlay the longest line segment
         plot(xy_long(:,1),xy_long(:,2),'LineWidth',2,'Color','red');
     end
+
+    % Title of 2nd image plot
     title(strcat("Longest Line: Dial #", num2str(i)))
 
 end
 
 
-toc % timer end
+toc % timer end   ~*~*~*~
