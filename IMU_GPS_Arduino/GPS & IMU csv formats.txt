@@ -1,0 +1,7 @@
+GPS & IMU csv formats
+
+GPS:
+latitude, longitude, altitude, date, time
+
+IMU:
+accel x, accel y, accel z, temperature, gyro x, gyro y, gyro z

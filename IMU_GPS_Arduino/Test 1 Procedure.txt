@@ -1,0 +1,23 @@
+Test 1 Procedure:
+
+- Start IMU recording: at least 5 stationary seconds on level surface
+^
+Time
+v
+- Start GPS
+^
+Time
+v
+- Start flight
+^
+Time
+v
+- Flight is over
+^
+Time
+v
+- IMU recording stops
+^
+Time
+v
+- GPS recording stops
