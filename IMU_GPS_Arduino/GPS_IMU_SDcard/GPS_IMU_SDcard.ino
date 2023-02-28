@@ -1,4 +1,13 @@
-// EC 464 Senior Design Project II
+/* 
+EC 464 Senior Design Project II
+
+Maxwell Bakalos, Eli Carroll, Qi Luo, Yanbo Zhu
+
+Some of this code is adapted from the following sources:
+https://randomnerdtutorials.com/arduino-mpu-6050-accelerometer-gyroscope/
+https://dronebotworkshop.com/sd-card-arduino/
+
+*/
 
 // GPS
 #include <TinyGPS++.h>
