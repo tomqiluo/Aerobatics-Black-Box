@@ -7,6 +7,9 @@ Some of this code is adapted from the following sources:
 https://randomnerdtutorials.com/arduino-mpu-6050-accelerometer-gyroscope/
 https://dronebotworkshop.com/sd-card-arduino/
 
+
+Format: Acceleration (m/s^2): x, y, z | Gyroscope (rad/s): x, y, z | Temperature (°C) | GPS: latitude(°N), longitude (°W), altitude (meters)
+
 */
 
 // GPS
@@ -21,7 +24,7 @@ https://dronebotworkshop.com/sd-card-arduino/
 #include <SD.h>
 
 // GPS Transmitter & Receiver Pins
-static const int TXPin = 4, RXPin = 3;
+static const int TXPin = 8, RXPin = 3;
 // static const uint32_t GPSBaud = 115200;
 static const uint32_t GPSBaud = 9600;
 
@@ -164,14 +167,28 @@ void GPS_write()
     myFile.print(F(","));
     myFile.print(gps.location.lng(), 6);  // Longitude (°W)
     myFile.print(F(","));
+    // myFile.print(gps.altitude.meters()); // Altitude (meters)
   }
-  else if (gps.altitude.isValid()) {
-    Serial.println(gps.altitude.meters()); // Altitude (meters)
+  // else
+  // {
+  //   // myFile.print(F("INVALID"));
+  // }
+
+  
+
+  if (gps.altitude.isValid()) {
+    myFile.print(F(","));
+    myFile.print(gps.altitude.meters()); // Altitude (meters)
   }
-  else
-  {
-    // myFile.print(F("INVALID"));
-  }
+  // else
+  // {
+  //   // myFile.print(F("INVALID"));
+  // }
+
+  // Print to Serial Monitor for debugging
+  Serial.println("LAT=");  Serial.println(gps.location.lat(), 6);
+  Serial.print("LONG="); Serial.println(gps.location.lng(), 6);
+  Serial.print("ALT=");  Serial.println(gps.altitude.meters());
 
   // myFile.print(F("  Date/Time: "));
   // if (gps.date.isValid())
@@ -272,6 +289,7 @@ void setup_SD() {
  
   // Serial.print(F("\nInitializing SD Card..."));
  
+  // in "if (!SD.begin(#))", # = pin for CS
   if (!SD.begin(7)) {
     Serial.println(F("initialization failed!"));
     while (1);
