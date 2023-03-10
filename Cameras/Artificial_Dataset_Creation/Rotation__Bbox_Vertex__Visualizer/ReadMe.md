@@ -1,0 +1,1 @@
+The "Python_GetImageCoords_visualizer_ANIMATION.m" file takes a 3d rendered video & a CSV file as inputs. It uses the CSV file created from the code in the "ExportTransform_and2dBBoxCoords_ToCsv" folder, which is a Blender add-on. 
