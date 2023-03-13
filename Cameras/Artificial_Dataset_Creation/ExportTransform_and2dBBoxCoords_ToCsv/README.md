@@ -9,6 +9,9 @@
 2.  Must name camera "Camera" in Blender
 3.  File output format is: 
 | Location: x, y, z | Rotation (°): x, y ,z | Bounding Box Vertex Pixel Coordinates: (x, y), (x, y), (x, y), (x, y), ... |
+### Use
+Install and select the object you wish to export.
+Go to File > Export > Animation Export Bbox (OLD) (.csv) 
 
 ## Current
 "ExportTransform_and2dBBoxCoords_ToCsv.py" works with multiple dials
@@ -16,10 +19,6 @@
 1.  Must name camera "Camera" in Blender
 2.  File output fromat is: 
 | Object # | Frame # | Needle Angles (°): x, y, z | Bound-Box: x, y, width, height |
-
-
-# Use
+### Use
 Install and select the object you wish to export.
 Go to File > Export > Animation Export Bbox (.csv) 
-
-
