@@ -28,11 +28,11 @@ from math import degrees
 from bpy_extras.object_utils import world_to_camera_view    # for object coordinates
 
 bl_info = {
-    "name": "Export Dial Needle Rotation & Bounding-Box To CSV file",
+    "name": "Export Object Transform & Bounding-Box To CSV file (OLD)",
     "author": "Max Bakalos (& Ludvig Ström)",
-    "version": (1, 1),
+    "version": (1, 0),
     "blender": (2, 80, 0),
-    "location": "File > Export > Selected Animation Bbox (.csv)",
+    "location": "File > Export > Selected Animation Bbox (OLD) (.csv)",
     "warning": 'Must be named "BoundBox_Object" & "Camera" in Blender',
     "description": "Selected object transform & bounding box camera coords for each frame",
     "category": "Import-Export",
@@ -59,75 +59,51 @@ def write_some_data(context, filepath):
     )
 
     # Get vetrices of Bounding Box Object from POV of Camera _-_-_-_-_-
-    #obj_bbx = bpy.data.objects['BoundBox_Object']   # bounding-box object
+    obj_bbx = bpy.data.objects['BoundBox_Object']   # bounding-box object
     cam = bpy.data.objects['Camera']                # camera
     
     # Open CSV file for writing
     f = open(filepath, 'w', encoding='utf-8')
 
-    # Selected Object Number
-    sel_obj_ind = 0
-
     # for each selected object . . .
     for sel in selection:
-        # Print out object index
-        sel_obj_ind += 1
-        print("Object #%d", sel_obj_ind)
-
-        # CREATE SUB-OBJECT VARIABLES _-_-_-_-_-_-_-_-
-        # Bounding-Box
-        bbox = sel.children[0]                  # 1st child object of Dial is the Bounding-Box
-        # Needle (Pointer)
-        needle = sel.children[1].children[0]    # 2nd child object (gauge)'s 1st child object is the Needle
-
         # for each frame . . .
         for i in range(endFrame-startFrame+1):
 
-            # DIAL & FRAME INFORMATION _-_-_-_-_-_-_-_-
+            # SELECTED OBJECT LOCATION & ROTATION _-_-_-_-_-_-_-_-
 
             frame = i + startFrame      # get frame index
             scene.frame_set(frame)      # go to that frame
+            rot = sel.rotation_euler    # get rotation of selected object
 
-            # Write Selected Object Number & Frame Index to CSV file
-            f.write( "%i, %i, " % (sel_obj_ind, frame) )
-
-
-            # NEEDLE (POINTER) ROTATION _-_-_-_-_-_-_-_-
-
-            rot = needle.rotation_euler # get rotation of needle in selected object
-
-            # Write Rotation to CSV file 
-            f.write( "%f, %f, %f" % (degrees(rot.x), degrees(rot.y), degrees(rot.z)) )
+            # Write Location & Rotation to CSV file 
+            f.write("%f, %f, %f, %f, %f, %f" % ( sel.location[0], sel.location[1], sel.location[2], degrees(rot.x), degrees(rot.y), degrees(rot.z)))
 
 
-            # BOUNDING-BOX VERTICES' COORDINATES FROM CAMERA POV _-_-_-_-_-_-_-_-
+            # BOUNDING-BOX OBJECT VERTICES' COORDINATES FROM CAMERA POV _-_-_-_-_-_-_-_-
 
             # Get vertices & transform them to the correct position by their rotation & translation (matrix_world)
-            verts = ((bbox.matrix_world @ vert.co) for vert in bbox.data.vertices)
+            verts = ((obj_bbx.matrix_world @ vert.co) for vert in obj_bbx.data.vertices)
             # Get camera-plane coordinates
             coords_2d = [world_to_camera_view(scene, cam, coord) for coord in verts]
 
+            # 2d data printout:
+            # rnd = lambda i: round(i)
+
+            # vert_str = ''   # preallocate string for bounding box vertices
+
             # Write Vertices to CSV file _-_-_-_-_-
-            # Order: 0 bottom left, 1 bottom right, 2 top left, 3 top right
-            # # for each vertex . . .
-            # for x, y, distance_to_lens in coords_2d:
-            #     # Append the vertex to the end of the csv line (round the pixel positions)
-            #     f.write( ", %f, %f" % (round(render_size[0]*x), round(render_size[1]*y)) )
+            # for each vertex . . .
+            for x, y, distance_to_lens in coords_2d:
+                #print("{},{}".format(rnd(res_x*x), rnd(res_y*y)))
+                # print("{},{}".format(rnd(render_size[0]*x), rnd(render_size[1]*y)))
+                # print(str(rnd(render_size[0]*x)) + ', ' + str(rnd(render_size[1]*y)))
+                # vert_str += ', ' + str(rnd(render_size[0]*x)) + ',' + str(rnd(render_size[1]*y))
 
-            # Format Bounding Box for MATLAB
-            # [x, y, width, height], where (x,y) is the top left corner and (width,height) are the distances to the bottom right corner
-            frame_height_y = round(render_size[1])                  # total height of frame
-            top_left_x = round(render_size[0]*coords_2d[2][0])      # x (top left)
-            top_left_y = round(render_size[1]*coords_2d[2][1])      # y (top left)
-            top_left_y = frame_height_y - top_left_y                # CORRECTED y (top left) <(0,0) at the top left of frame>
-            bottom_right_x = round(render_size[0]*coords_2d[1][0])  # x (bottom right)
-            bottom_right_y = round(render_size[1]*coords_2d[1][1])  # y (bottom right)
-            bottom_right_y = frame_height_y - bottom_right_y        # CORRECTED y (bottom right) <(0,0) at the top left of frame>
-            bbox_width_x =  bottom_right_x - top_left_x             # width
-            bbox_height_y = bottom_right_y - top_left_y             # height
+                # Append the vertex to the end of the csv line (round the pixel positions)
+                f.write(", %f, %f" % (round(render_size[0]*x), round(render_size[1]*y)))
 
-            f.write( ", %f, %f" % (top_left_x, top_left_y) )
-            f.write( ", %f, %f" % (bbox_width_x, bbox_height_y) )
+            # print(vert_str)
 
             f.write("\n")
 
@@ -146,9 +122,9 @@ from bpy.props import StringProperty, BoolProperty, EnumProperty
 from bpy.types import Operator
 
 
-class ExportTransformToCsvBbox(Operator, ExportHelper):
-    bl_idname = "export.transform_to_csv_bbox"  # important since its how bpy.ops.import_test.some_data is constructed
-    bl_label = "Export Selected Animation Bbox (.csv)"
+class ExportTransformToCsvBbox_OLD(Operator, ExportHelper):
+    bl_idname = "export.transform_to_csv_bbox_old"  # important since its how bpy.ops.import_test.some_data is constructed
+    bl_label = "Export Selected Animation Bbox (OLD) (.csv)"
 
     # ExportHelper mixin class uses this
     filename_ext = ".csv"
@@ -165,16 +141,16 @@ class ExportTransformToCsvBbox(Operator, ExportHelper):
 
 # Only needed if you want to add into a dynamic menu
 def menu_func_export(self, context):
-    self.layout.operator(ExportTransformToCsvBbox.bl_idname, text="Selected Animation Bbox (.csv)")
+    self.layout.operator(ExportTransformToCsvBbox_OLD.bl_idname, text="Selected Animation Bbox (OLD) (.csv)")
 
 
 def register():
-    bpy.utils.register_class(ExportTransformToCsvBbox)
+    bpy.utils.register_class(ExportTransformToCsvBbox_OLD)
     bpy.types.TOPBAR_MT_file_export.append(menu_func_export)
 
 
 def unregister():
-    bpy.utils.unregister_class(ExportTransformToCsvBbox)
+    bpy.utils.unregister_class(ExportTransformToCsvBbox_OLD)
     bpy.types.TOPBAR_MT_file_export.remove(menu_func_export)
 
 
@@ -182,4 +158,4 @@ if __name__ == "__main__":
     register()
 
     # test call
-    #bpy.ops.export.transform_to_csv_bbox('INVOKE_DEFAULT')
+    #bpy.ops.export.transform_to_csv_bbox_OLD('INVOKE_DEFAULT')
