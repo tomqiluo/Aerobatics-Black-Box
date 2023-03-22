@@ -4,7 +4,7 @@ In the folder "GPS_IMU_SDcard" is the most recent Arduino code, "GPS_IMU_SDcard.
 
 ------------------------------------------------------------------------------------
 
-GPS & IMU csv formats
+##GPS & IMU csv formats
 
 GPS:
 latitude, longitude, altitude, date, time
