@@ -37,33 +37,40 @@ TinyGPSPlus gps;
 Adafruit_MPU6050 mpu;
 
 // SD Card Reader File
+#if defined (ARDUINO_ARCH_SAM)
+#define ARDUINO_DUE
+#endif
+#define myWire Wire1 // Connect using the Wire1 port. Change this if required
+#define CSPIN 4
+#define gnssAddress 0x42
 File myFile;
 
 // Off Button
-const int buttonPin = 9;  // the number of the pushbutton pin
+const int buttonPin = 12;  // the number of the pushbutton pin
 int button = 0;
 
 void setup(void) {
   Serial.begin(115200);
   //ss.begin(GPSBaud);
-
+  pinMode(buttonPin, INPUT);
  // Serial.print(F("\nSETUP"));
 
   setup_SD();
 
   setup_MPU6050();
+  Serial.print("IMU setup complete");
 
-  Wire.begin(); // Start I2C
+  myWire.begin(); // Start I2C
   //myGNSS.enableDebugging(); // Uncomment this line to enable helpful debug messages on Serial
-  while (myGNSS.begin() == false) //Connect to the u-blox module using Wire port
+   while (myGNSS.begin(myWire, gnssAddress) == false) //Connect to the u-blox module using our custom port and address
   {
-    //Serial.println(F("u-blox GNSS not detected at default I2C address. Retrying..."));
+    Serial.println(F("u-blox GNSS not detected. Retrying..."));
     delay (1000);
   }
   myGNSS.setI2COutput(COM_TYPE_UBX); //Set the I2C port to output UBX only (turn off NMEA noise)
   
 
-  //Serial.print(F("\nSetup Complete\n"));
+  Serial.print(F("\nSetup Complete\n"));
   //delay(100);
 
 
@@ -104,7 +111,7 @@ void loop() {
           IMU_write();
 
           GPS_write();
-          
+          Serial.println("writing...");
           
         } 
         else {
@@ -124,7 +131,7 @@ void loop() {
     else {
     // close the file:
      myFile.close();
-     //Serial.println(F("DONE!"));
+     Serial.println(F("DONE!"));
 
     // Exit the Arduino Board
      exit(0);      
@@ -141,12 +148,14 @@ void IMU_write() {
   myFile.println();
   // myFile.print("Acceleration X: ");
   myFile.print(a.acceleration.x);
+  Serial.print(a.acceleration.x);
   // myFile.print(", Y: ");
   myFile.print(F(","));
   myFile.print(a.acceleration.y);
   // myFile.print(", Z: ");
   myFile.print(F(","));
   myFile.print(a.acceleration.z);
+  Serial.print(a.acceleration.z);
   // myFile.print(" m/s^2");
   myFile.print(F(","));
 
@@ -160,7 +169,7 @@ void IMU_write() {
   myFile.print(g.gyro.z);
   // myFile.print(" rad/s");
   myFile.print(F(","));
-
+Serial.println("IMU data written");
   // myFile.print("   Temperature: ");
   //myFile.print(temp.temperature);
   // myFile.print(" degC");
@@ -181,6 +190,7 @@ void GPS_write()
     int32_t longitude = myGNSS.getLongitude();
   myFile.print(F(","));
     myFile.print(longitude);
+    Serial.print(longitude);
    // myFile.print(F(" (degrees * 10^-7)"));
 
     int32_t altitude = myGNSS.getAltitudeMSL(); // Altitude above Mean Sea Level
@@ -189,6 +199,7 @@ void GPS_write()
     //myFile.print(F(" (mm)"));
 
     myFile.println();
+    Serial.println("GPS data written");
   }
 
     //printBuffer(myBuffer); // Uncomment this line to print the data as Hexadecimal bytes
@@ -319,29 +330,30 @@ void setup_SD() {
   }
  
  
-  // Serial.print(F("\nInitializing SD Card..."));
+   Serial.print(F("\nInitializing SD Card..."));
  
   // in "if (!SD.begin(#))", # = pin for CS
-  if (!SD.begin(7)) {
-    //Serial.println(F("initialization failed!"));
+  if (!SD.begin(CSPIN)) {
+    Serial.println(F("initialization failed!"));
     while (1);
   }
-  // Serial.println(F("initialization done."));
+   Serial.println(F("initialization done."));
  
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
   myFile = SD.open("test.txt", FILE_WRITE);
+  Serial.println("file opened");
 }
 
 void setup_MPU6050() {
   while (!Serial)
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
 
-  // Serial.println("\nAdafruit MPU6050 test!");
+   Serial.println("\nAdafruit MPU6050 test!");
 
   // Try to initialize!
   if (!mpu.begin()) {
-    //Serial.println(F("\nFailed to find MPU6050 chip"));
+    Serial.println(F("\nFailed to find MPU6050 chip"));
     while (1) {
       delay(10);
     }
