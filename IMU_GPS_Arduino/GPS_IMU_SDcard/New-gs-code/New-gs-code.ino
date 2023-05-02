@@ -197,6 +197,18 @@ void GPS_write()
    myFile.print(F(","));
     myFile.print(altitude);
     //myFile.print(F(" (mm)"));
+    myFile.print(F(","));
+    myFile.print(myGNSS.getYear());
+    myFile.print("-");
+    myFile.print(myGNSS.getMonth());
+    myFile.print("-");
+    myFile.print(myGNSS.getDay());
+    myFile.print(" ");
+    myFile.print(myGNSS.getHour());
+    myFile.print(":");
+    myFile.print(myGNSS.getMinute());
+    myFile.print(":");
+    myFile.print(myGNSS.getSecond());
 
     myFile.println();
     Serial.println("GPS data written");
