@@ -12,6 +12,9 @@ contains the code for the Arduino datalogger using the GPS & IMU
 ### fdr-files
 contains code for converting CSV data into FDR files for Xplane
 
+### Documents
+contains papers from EC463/EC464
+
 <br>
 -------------- <br>
 (old)
