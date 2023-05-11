@@ -1,0 +1,1229 @@
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_03Arcs.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_05.png
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_05.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_050.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_0200Arc.png
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_0200Arc.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_02000.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_1070.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Airplane.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Altimeter.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_03Arcs.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Compass.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Fuel.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_GreenLines.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Knots.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Level.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Oil.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_OilB.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl CenterCap
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Face
+Kd 0 0 0
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+map_Kd C:TS/HLP-1973304/Gauges/Objects/Gauge_Pinwheel.png
+
+newmtl Lens
+Kd 0.784314 0.784314 0.784314
+Ke 0.87 0.87 0.87
+Ka 0 0 0
+Ks 0.8 0.8 0.8
+Ns 899
+Tr 0.9
+d 0.1
+Ni 1.6
+Tf 1 1 1
+
+newmtl NeedleAxle
+Kd 0.588235 0.588235 0.588235
+Ke 0 0 0
+Ka 1 1 1
+Ks 0.515 0.515 0.515
+Ns 144
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleBase
+Kd 0.784314 0.784314 0.784314
+Ke 0 0 0
+Ka 0.7 0.7 0.7
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl NeedleMain
+Kd 1 1 1
+Ke 0 0 0
+Ka 0.85 0.85 0.85
+Ks 0 0 0
+Ns 400
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
+newmtl Rim
+Kd 0.32549 0.32549 0.32549
+Ke 0 0 0
+Ka 0.35 0.35 0.35
+Ks 0.535 0.535 0.535
+Ns 64
+Tr 0
+d 1
+Ni 1
+Tf 1 1 1
+
