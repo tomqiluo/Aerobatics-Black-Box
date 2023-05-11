@@ -1,5 +1,5 @@
 # Aerobatics-Black-Box
-[User's Manual](https://docs.google.com/document/d/1opQER2T7NP1kOz1mB9arMs6t4S-PhSdTyTyfU0w71RU/edit?usp=share_link)
+[Documents](https://github.com/tomqiluo/Aerobatics-Black-Box/tree/main/Documents)
 
 ## Folders:
 
