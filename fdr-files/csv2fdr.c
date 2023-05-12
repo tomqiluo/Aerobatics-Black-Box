@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    FILE *input_file = fopen("TEST.TXT", "r");
+    FILE *input_file = fopen("GPS_IMU_combined.csv", "r");
     FILE *output_file = fopen("output.fdr", "w");
     int count = 0;
     int number = 0;
@@ -40,8 +40,8 @@ int main() {
     fprintf(output_file, "COMM, Be sure to use COMMAS after each label!\n\n");
     fprintf(output_file, "ACFT, Aircraft/Laminar Research/Cessna 172 SP/Cessna_172SP.acf\n");  // DEMO
     fprintf(output_file, "TAIL, N12345\n");
-    fprintf(output_file, "TIME, 12:00:00\n");
-    fprintf(output_file, "DATE, 04/18/2023\n");
+    fprintf(output_file, "TIME, 12:00:00\n");   // Change According to the Times
+    fprintf(output_file, "DATE, 05/1/2023\n");  // Change According to the Dates
     fprintf(output_file, "PRES, 29.92\n");
     fprintf(output_file, "DISA, 0\n");
     fprintf(output_file, "WIND, 180,10\n\n");
@@ -89,7 +89,7 @@ int main() {
     fprintf(output_file, "DREF, sim/cockpit2/engine/indicators/EGT_CYL_deg_C[0]\t\t1.0\t\t// Exhaust Gas Temp per cylinder, deg C\n\n");
     
     // fprintf(output_file, "COMM,time,Longitude,Latitude,Altitude,HDG,Pitch,Roll,BaroA,AltMSL,VSpd,TAS,IAS,GndSpd,Stall Warning,flap,flap,OAT,wind,wind speed,FQtyL,FQtyR,volt1,amp1,OilP,OilT,Eng1 Percent Power,RPM,MAP,FFlow,CHT-1,CHT-2,CHT-3,CHT-4,CHT-5,CHT-6,EGT-1,EGT-2,EGT-3,EGT-4,EGT-5,EGT-6\n");
-    fprintf(output_file, "COMM,time,Longitude,Latitude,Altitude,Pitch,Roll\n");
+    fprintf(output_file, "COMM,time,Longitude,Latitude,Altitude,Pitch,Roll,Yaw\n");
     
 
     char line[256];
@@ -97,8 +97,8 @@ int main() {
         double data[9];
         char date[16];
         char time[16];
-
-        sscanf(line, "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf, Date/Time: %[^ ] %s",
+//-71.201749,42.002863,40.371,0.42,0.09,9.42,-0.04,0.04,0.03,,
+        sscanf(line, "%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%s %s",
                &data[0], &data[1], &data[2], &data[3], &data[4], &data[5],
                &data[6], &data[7], &data[8], date, time);
 
@@ -107,8 +107,8 @@ int main() {
         } else {
             // fprintf(output_file, "DATA,%d,%.6lf,%.6lf,200,0,%.2lf,%.2lf,30,5755.5,-12.9,148,131.9,137.4,0,0,0,15.2,357,12,19.2,19.3,27.9,0.4,44.4,186.7,82,2620.1,25,10.9,351.5,371.3,352.3,354.4,363.5,346.5,1381.8,1405.1,1382.2,1387.8,1408.6,1406.6\n",
             //     number, data[7], data[8], data[3], data[4]);
-            fprintf(output_file, "DATA,%d,%.6lf,%.6lf,200,0,%.2lf,%.2lf\n",
-                number, data[8], data[7], data[3], data[4]);
+            fprintf(output_file, "DATA,%d,%lf,%lf,%lf,%lf,%lf,%lf\n",
+                number, data[0], data[1], data[2], data[7], data[8], data[6]);
                 number = number + 1;
         }
     }
